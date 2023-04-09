@@ -1,0 +1,275 @@
+/* Theming */
+
+:root{
+    --white: #f9f9f9;
+    --black: #36383F;
+    --gray: #85888C;
+    --blue: #003062;
+} /* variables*/
+
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+body{
+	background-color: bisque;
+	font-family:  Arial, Helvetica, sans-serif;
+}
+
+
+h2 { 
+	color: blue; 
+}
+
+h3 { 
+	color: blue; 
+}
+
+a{
+    text-decoration: none; 
+}
+
+ul.sq {
+  list-style-type: square;
+}
+
+
+ul{
+    list-style: none;
+} 
+
+ul.num {
+	list-style-type: square;
+}
+
+
+
+/* Header */
+.header{
+    background-color: lavender; 
+ 	box-shadow: none ; 
+	position: sticky;
+    top: 0px;
+    width: 100%;
+}
+/*Logo*/
+.logo{
+    display: inline-block;
+	font-family: Arial, sans-serif;
+    font-size: 1.5em;
+	font-weight: bold;
+    margin-left: 0px; 
+	margin-right: 0px;
+	padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+}
+
+/* Nav menu */
+.nav{
+    /* width: 50%; */
+    /* height: 100%; */
+	position: fixed; 
+    background-color: aquamarine; 
+    overflow: auto;  /* hidden; */
+	padding-right: 10px;
+}
+.menu a{
+    display: block;
+    padding: 5px;
+    color: black; 
+	text-decoration: none;
+}
+.menu a:hover{
+    background-color: white 
+}
+.nav{
+    max-height: 0;
+    transition: max-height .5s ease-out;
+}
+
+/* Menu Icon */
+.hamb{
+    cursor: pointer;
+    float: right;
+    padding: 24px 20px;
+}/* Style label tag */
+
+.hamb-line {
+    background: black; 
+    display: block;
+    height: 2px;
+    position: relative;
+    width: 24px;
+
+} /* Style span tag */
+
+.hamb-line::before,
+.hamb-line::after{
+    background: black;  
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+.hamb-line::before{
+    top: 5px;
+}
+.hamb-line::after{
+    top: -5px;
+}
+
+.side-menu {
+    display: none;
+} /* Hide checkbox */
+
+
+/* Toggle menu icon */
+.side-menu:checked ~ nav{
+    max-height: 100%;
+}
+.side-menu:checked ~ .hamb .hamb-line {
+    background: transparent;
+}
+.side-menu:checked ~ .hamb .hamb-line::before {
+    transform: rotate(-45deg);
+    top:0;
+}
+.side-menu:checked ~ .hamb .hamb-line::after {
+    transform: rotate(45deg);
+    top:0;
+}
+.highlightContent{
+    text-align: center;
+}
+
+.highlightContent h2{
+	color: black;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    padding:10px 0;
+} 
+.highlightContent p{
+    font-size: 16px;
+    padding-bottom: 5px; 
+    line-height: 1.5;
+	font-weight: none; 
+}
+
+
+footer{
+	margin: 20px;
+    background-color: #003062;
+    color: white;
+	font-size: 0.8em;
+    text-align: center;
+    padding:1px;
+    line-height: 20px; 
+    font-family: sans-serif;
+}
+
+footer a{
+	color:white;
+	font-family: sans-serif;
+	text-decoration: None;
+}
+
+
+/*
+footer img{
+    width:30px;
+    margin:0 4px;
+}
+
+footer p{
+    font-size: 15px;
+    color:var(--gray);
+}
+footer h3{
+    margin-top: 0;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+footer div{
+    display: block; 
+}
+
+footer .social{
+    margin-top: 10px;
+	color: white;
+}
+footer .social div{
+    /* display: inline-block; */
+	/* display: inline; */
+}
+*/
+
+
+/* Responsiveness */
+@media (min-width: 768px){
+    .nav{
+        max-height: 100px;
+        /* top: 15px; */
+		top: 57px;
+        /* position: relative; */
+        float: right;
+        /* width: fit-content; */
+		width: fit-content;
+        /* background-color: transparent; */
+		background-color: aquamarine; 
+		padding-right: 10px;
+    }
+    .menu li{
+        float: left;
+    }
+    .menu a:hover{
+        background-color: transparent;
+        color: var(--gray);
+
+    }
+    .hamb{
+        display: none;
+    }
+    .header{
+        padding: 5px 15px 0px 15px;
+    }
+
+    .highlightContent{
+        padding:35px 60px;
+    }
+    .highlightContent h2{
+        font-size:40px;
+    }
+    .highlightContent p{
+        font-size:8px;
+        padding:30px 340px;
+        font-size:20px;
+        line-height: 1.5;
+    }
+}
+/*
+
+/* ipad Portrait and Landscape */
+@media (min-width: 768px) and (max-width: 1024px){
+    .highlightContent p{
+        padding:2px 0;
+    }
+}
+
+/* Mobile Portrait and Landscape */
+@media (min-width: 320px) and (max-width: 480px) {
+
+}
+
+/*desktop size*/
+@media (min-width: 1200px) and (max-width: 1600px){
+}

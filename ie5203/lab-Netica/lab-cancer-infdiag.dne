@@ -1,0 +1,210 @@
+// ~->[DNET-1]->~
+
+// File created by PohK at USingapore using Netica 4.08 on Sep 16, 2009 at 18:14:30.
+
+bnet Lab_CancerID {
+autoupdate = FALSE;
+whenchanged = 1253096013;
+
+visual V1 {
+	defdispform = LABELBOX;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 10;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (23, 23, 825, 529);
+	resolution = 72;
+	drawingbounds = (1305, 769);
+	showpagebreaks = FALSE;
+	usegrid = FALSE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0xc0c0c0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0xf8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0xd3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0xc8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0xffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0xffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0xffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0xdee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0xf0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0xffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+node Gender {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Male, Female);
+	parents = ();
+	probs = 
+		// Male         Female       
+		  (0.5,         0.5);
+	numcases = 1;
+	whenchanged = 1127546286;
+	visual V1 {
+		center = (375, 44);
+		height = 6;
+		};
+	};
+
+node OccupationType {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Office, NonOffice);
+	parents = ();
+	probs = 
+		// Office       NonOffice    
+		  (0.25,        0.75);
+	whenchanged = 1127546268;
+	visual V1 {
+		center = (123, 46);
+		height = 1;
+		};
+	};
+
+node Smoking {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (True, False);
+	parents = (Gender, OccupationType);
+	probs = 
+		// True         False           // Gender OccupationType 
+		(((0.1,         0.9),           // Male   Office         
+		  (0.2,         0.8)),          // Male   NonOffice      
+		 ((0.05,        0.95),          // Female Office         
+		  (0.1,         0.9)));         // Female NonOffice      ;
+	whenchanged = 1127545881;
+	visual V1 {
+		center = (337, 146);
+		height = 5;
+		};
+	};
+
+node ExposureToToxics {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (True, False);
+	parents = (OccupationType);
+	probs = 
+		// True         False          // OccupationType 
+		 ((0.05,        0.95),         // Office         
+		  (0.1,         0.9));         // NonOffice      ;
+	numcases = 1;
+	whenchanged = 1127545883;
+	visual V1 {
+		center = (102, 152);
+		height = 4;
+		};
+	};
+
+node LungCancer {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (True, False);
+	parents = (Smoking, ExposureToToxics);
+	probs = 
+		// True         False           // Smoking ExposureToToxics 
+		(((0.25,        0.75),          // True    True             
+		  (0.1,         0.9)),          // True    False            
+		 ((0.15,        0.85),          // False   True             
+		  (0.01,        0.99)));        // False   False            ;
+	numcases = 1;
+	whenchanged = 1220797652;
+	visual V1 {
+		center = (221, 242);
+		height = 3;
+		link 1 {
+			path = ((327, 156), (232, 233));
+			};
+		link 2 {
+			path = ((113, 162), (209, 233));
+			};
+		};
+	};
+
+node SerumCalcium {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Normal, Abnormal);
+	parents = (LungCancer);
+	probs = 
+		// Normal       Abnormal       // LungCancer 
+		 ((0.15,        0.85),         // True       
+		  (0.95,        0.05));        // False      ;
+	numcases = 1;
+	whenchanged = 1128072659;
+	visual V1 {
+		center = (353, 338);
+		height = 7;
+		};
+	};
+
+node XRayResult {
+	kind = NATURE;
+	discrete = TRUE;
+	chance = CHANCE;
+	states = (Normal, Abnormal);
+	parents = (LungCancer);
+	probs = 
+		// Normal       Abnormal       // LungCancer 
+		 ((0.05,        0.95),         // True       
+		  (0.9,         0.1));         // False      ;
+	numcases = 1;
+	whenchanged = 1128072630;
+	visual V1 {
+		center = (114, 340);
+		height = 2;
+		link 1 {
+			path = ((212, 252), (124, 331));
+			};
+		};
+	};
+
+node Treatment {
+	kind = DECISION;
+	discrete = TRUE;
+	chance = DETERMIN;
+	states = (Yes, No);
+	parents = ();
+	functable = 
+		   No;
+	whenchanged = 1127545889;
+	visual V1 {
+		center = (536, 184);
+		height = 9;
+		};
+	};
+
+node Utility {
+	kind = UTILITY;
+	discrete = FALSE;
+	measure = RATIO;
+	chance = DETERMIN;
+	parents = (Treatment, LungCancer);
+	functable = 
+		                  // Treatment LungCancer 
+		 ((0.5,           // Yes       True       
+		   0.7),          // Yes       False      
+		  (0,             // No        True       
+		   1));           // No        False      ;
+	whenchanged = 1127545918;
+	visual V1 {
+		center = (411, 260);
+		height = 8;
+		link 1 {
+			path = ((522, 194), (426, 251));
+			};
+		};
+	};
+ElimOrder = (SerumCalcium, XRayResult, Gender, OccupationType, Smoking, ExposureToToxics, LungCancer, Treatment);
+};

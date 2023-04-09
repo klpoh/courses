@@ -1,0 +1,122 @@
+// ~->[DNET-1]->~
+
+// File created by PohK at USingapore using Netica 4.08 on Sep 16, 2009 at 18:19:37.
+
+bnet cancer_blank_bn {
+autoupdate = TRUE;
+whenchanged = 1253096323;
+
+visual V1 {
+	defdispform = BELIEFBARS;
+	nodelabeling = TITLE;
+	NodeMaxNumEntries = 50;
+	nodefont = font {shape= "Arial"; size= 10;};
+	linkfont = font {shape= "Arial"; size= 9;};
+	windowposn = (22, 29, 1116, 482);
+	resolution = 72;
+	drawingbounds = (16383, 16383);
+	showpagebreaks = FALSE;
+	usegrid = FALSE;
+	gridspace = (6, 6);
+	NodeSet Node {BuiltIn = 1; Color = 0xc0c0c0;};
+	NodeSet Nature {BuiltIn = 1; Color = 0xf8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0xd3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0xc8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0xffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0xffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0xffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0xdee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0xf0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0xffffff;};
+	PrinterSetting A {
+		margins = (1270, 1270, 1270, 1270);
+		landscape = FALSE;
+		magnify = 1;
+		};
+	};
+
+node Gender {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (Male, Female);
+	parents = ();
+	whenchanged = 1190252255;
+	visual V1 {
+		center = (375, 44);
+		height = 6;
+		};
+	};
+
+node OccupationType {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (Office, NonOffice);
+	parents = ();
+	whenchanged = 1190252255;
+	visual V1 {
+		center = (123, 46);
+		height = 1;
+		};
+	};
+
+node Smoking {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (True, False);
+	parents = (Gender, OccupationType);
+	whenchanged = 1190252255;
+	visual V1 {
+		center = (337, 146);
+		height = 5;
+		};
+	};
+
+node ExposureToToxics {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (True, False);
+	parents = (OccupationType);
+	whenchanged = 1190252255;
+	visual V1 {
+		center = (102, 152);
+		height = 4;
+		};
+	};
+
+node LungCancer {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (True, False);
+	parents = (Smoking, ExposureToToxics);
+	whenchanged = 1190252255;
+	visual V1 {
+		center = (221, 242);
+		height = 3;
+		};
+	};
+
+node SerumCalcium {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (Normal, Abnormal);
+	parents = (LungCancer);
+	whenchanged = 1190252255;
+	visual V1 {
+		center = (353, 338);
+		height = 7;
+		};
+	};
+
+node XRayResult {
+	kind = NATURE;
+	discrete = TRUE;
+	states = (Normal, Abnormal);
+	parents = (LungCancer);
+	whenchanged = 1190252255;
+	visual V1 {
+		center = (114, 340);
+		height = 2;
+		};
+	};
+ElimOrder = (SerumCalcium, XRayResult, Gender, OccupationType, Smoking, ExposureToToxics, LungCancer);
+};
