@@ -1,0 +1,83 @@
+/* Reset */
+
+*{
+    margin: 0px;
+    padding: 1px; 
+}
+
+body{
+	/* background-color: bisque; */
+	background-color: lightblue;
+	font-family:  Arial, Helvetica, sans-serif;
+	padding-left: 10px;
+}
+
+body h2, h3 { 
+	color: blue; 
+	padding: 10px;
+}
+
+body ol{
+    padding-left: 40px;
+} 
+
+
+/* Responsiveness */
+@media (min-width: 768px){
+    .nav{
+        max-height: 100px;
+        /* top: 15px; */
+		top: 57px;
+        /* position: relative; */
+        float: right;
+        /* width: fit-content; */
+		width: fit-content;
+        /* background-color: transparent; */
+		background-color: aquamarine; 
+		padding-right: 10px;
+    }
+    .menu li{
+        float: left;
+    }
+    .menu a:hover{
+        background-color: transparent;
+        color: var(--gray);
+
+    }
+    .hamb{
+        display: none;
+    }
+    .header{
+        padding: 5px 15px 0px 15px;
+    }
+
+    .highlightContent{
+        padding:35px 60px;
+    }
+    .highlightContent h2{
+        font-size:40px;
+    }
+    .highlightContent p{
+        font-size:8px;
+        padding:30px 340px;
+        font-size:20px;
+        line-height: 1.5;
+    }
+}
+/*
+
+/* ipad Portrait and Landscape */
+@media (min-width: 768px) and (max-width: 1024px){
+    .highlightContent p{
+        padding:2px 0;
+    }
+}
+
+/* Mobile Portrait and Landscape */
+@media (min-width: 320px) and (max-width: 480px) {
+
+}
+
+/*desktop size*/
+@media (min-width: 1200px) and (max-width: 1600px){
+}
