@@ -1,0 +1,102 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 (Macintosh; I; PPC) [Netscape]">
+   <TITLE>Deterministic Sensitivity Analysis</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#551A8B" ALINK="#0000FF">
+
+<CENTER>
+<H1>
+<FONT FACE="Monotype Corsiva"><FONT COLOR="#6C18B0">Deterministic Sensitivity
+Analysis</FONT></FONT></H1></CENTER>
+<IMG SRC="graphics/Bar.gif" NOSAVE HEIGHT=5 WIDTH=100%>
+
+<P>Now we can evaluate how each of the uncertainties affect the resulting
+NPV of the whole project.
+
+<P>Tornado diagrams offer an effective tool for representing results of
+the deterministic sensitivity analysis. First, the all the variables in
+the value model are set to the "Base" value. The resulting NPV is the "Base
+Case" value for the alternative.&nbsp; Then, for each of the variables
+in turn, the model is evaluated at the low value of the variable and then
+at the high value of the variable (with all other parameters kept at their
+base value). The difference between the low and high value of the model
+is a measure of how sensitive the problem is to change in that variable.
+<BR>&nbsp;
+<H3>
+<FONT COLOR="#6C18B0"><FONT SIZE=+2>Plan Alpha</FONT></FONT></H3>
+The company will enjoy a moderate NPV of this plan without much variance.
+The NPV is not affected very much by the uncertainties.&nbsp; Market Success
+has the highest impact on the value in this case.&nbsp; Note that when
+the Average Change in Price is at its high value, the NPV is small and
+vice versa.&nbsp; In this case the drop in price reduces the revenue but
+does not stimulate enough demand to compensate this loss.
+<CENTER>&nbsp;</CENTER>
+
+<CENTER><IMG SRC="graphics/alpha_tornado.gif" ALT="Tornado Diagram For Plan Alpha" NOSAVE HEIGHT=144 WIDTH=409 ALIGN=CENTER></CENTER>
+&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+<H3>
+<FONT COLOR="#6C18B0"><FONT SIZE=+2>Plan Beta</FONT></FONT></H3>
+This alternative offers a higher Base Case NPV than Plan Alpha but it is
+clearly more risky: the NPV almost drops to zero when the Market Success
+is low. The larger swing of the bars on the diagram shows that the NPV
+will be significantly affected by the variables. However, Market Success
+and Change in Price would have the most impact on the resulting value.
+<BR>&nbsp;
+<CENTER>&nbsp;<IMG SRC="graphics/beta_tornado.gif" ALT="Tornado Diagram for Plan Beta" NOSAVE HEIGHT=144 WIDTH=409></CENTER>
+&nbsp;
+<BR>&nbsp;
+
+<P>&nbsp;
+<H3>
+<FONT COLOR="#6C18B0"><FONT SIZE=+2>Plan Gamma</FONT></FONT></H3>
+Even though the Base Case Value for this alternative is rather high, there
+can be a great risk involved in pursuing it. When the Market Success is
+"Low", it drops to a negative value.
+
+<P>An interesting thing happens here: for both low and high values of Change
+in Price variable, the NPV of the alternative is smaller than for the base-case
+Change in Price.&nbsp; It can be explained easily: if the price drops by
+a large amount per year the company will enjoy higher demand, but lose
+on the revenues. When the price does not drop by much, the demand will
+not be there. The base-case value balances the two effects: the price is
+high enough to bring in sufficient revenue and is low enough to attract
+customers.
+<BR>&nbsp;
+<CENTER>&nbsp;<IMG SRC="graphics/gamma_tornado.gif" ALT="Tornado Diagram for Plan Gamma" NOSAVE HEIGHT=146 WIDTH=409></CENTER>
+&nbsp;
+<BR>&nbsp;
+
+<P>&nbsp;
+<H3>
+<FONT COLOR="#6C18B0"><FONT SIZE=+2>Conclusions</FONT></FONT></H3>
+There is no deterministic dominance among the alternatives - none of the
+alternatives is clearly better or worse than others. Therefore it is necessary
+to continue on with the probabilistic analysis.
+
+<P>The tornado diagrams show that the Change in Cost uncertainty does not
+seriously affect the NPV. This means that in further analysis it is possible
+to set its value to the "Base" value and consider it as constant. However,
+Market Success and Change in Price have to be investigated further in the
+probabilistic analysis.
+<BR>&nbsp;
+
+<P><IMG SRC="graphics/Bar.gif" NOSAVE HEIGHT=5 WIDTH=100%>
+<CENTER><TABLE COLS=2 WIDTH="90%" >
+<TR>
+<TD>
+<CENTER><A HREF="model.htm"><IMG SRC="graphics/backward.gif" NOSAVE BORDER=0 HEIGHT=39 WIDTH=35 ALIGN=CENTER></A><A HREF="model.htm">Back
+to Value Model</A></CENTER>
+</TD>
+
+<TD>
+<CENTER><A HREF="tree.htm">Next to Decision Tree</A><A HREF="tree.htm"><IMG SRC="graphics/forward.gif" NOSAVE BORDER=0 HEIGHT=39 WIDTH=35 ALIGN=CENTER></A></CENTER>
+</TD>
+</TR>
+</TABLE></CENTER>
+&nbsp;
+</BODY>
+</HTML>

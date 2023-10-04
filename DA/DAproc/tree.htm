@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=x-mac-roman">
+   <META NAME="Content-Type" CONTENT="text/html; charset=x-mac-roman">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 (Macintosh; I; PPC) [Netscape]">
+   <TITLE>Decision Tree</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#551A8B" ALINK="#0000FF">
+
+<CENTER>
+<H1>
+<FONT FACE="Monotype Corsiva"><FONT COLOR="#6C18B0">Decision Tree</FONT></FONT></H1></CENTER>
+
+<CENTER><IMG SRC="graphics/Bar.gif" NOSAVE HEIGHT=5 WIDTH=100%></CENTER>
+
+
+<P>More detailed investigation of probability distributions for each uncertainty
+showed that, in fact, there is a 50-50 chance of the market success being
+High or Low.&nbsp; There is a 10% chance that the actual Average Change
+in Price will be 8% per year, 40% chance that it will be 10% per year and
+50% chance that the price change will be 14% per year.&nbsp; The decision
+diagram that we have built previously can be represented as a decision
+tree.&nbsp; Note that we are treating Change in Cost as known, thus it
+is not represented in the decision tree.
+<CENTER></CENTER>
+
+<CENTER><IMG SRC="graphics/distinctions.gif" ALT="Decision diagram with distinctions" NOSAVE BORDER=0 HEIGHT=191 WIDTH=466></CENTER>
+
+<CENTER>&nbsp;</CENTER>
+
+
+<P>Every end point on the decision tree represents one of the possible
+outcomes, or prospects.&nbsp; For example, the very first end point represents
+a situation where the company had chosen Plan Alpha, then the Market Success
+turned out to be high and on average the market price was 8% per year.&nbsp;
+This scenario is expected to result in NPV of $94,108,906 over the next
+ten years.&nbsp; This dollar amount is then converted into the utility
+(u-value) using the <A HREF="preferences.htm#utility_function">utility
+function</A>.
+
+<P>The numbers below each branch for uncertainties represents the probability
+of that outcome.&nbsp; For example, the probability of market Success being
+"High" is 50%.&nbsp; Note that this number is the same regardless of the
+plan chosen.&nbsp; This says that Market Success does not depend on the
+plan choice.
+
+<P>The expected utility of each alternative is calculated by multiplying
+the u-values of all prospects of the alternative by the corresponding probabilities
+and then summing them all up.&nbsp; The blue figure under each decision
+branch represents the u-value of each alternative.&nbsp; Using utilities
+instead of the values themselves allows to take into account the decision-maker's
+rick attitude.
+
+<P>Using the expected utility of each alternative <B>the certain equivalent</B>
+of that alternative can be calculated by using the inverse of the utility
+function.
+<UL>The certain equivalent for an uncertain event is that certain value
+(in this case expressed in dollars) which a decision maker is just willing
+to accept in lieu of the gamble represented by the uncertain event. (<A HREF="references.htm">Holloway
+[1979]</A>)</UL>
+The best alternative is the one with the highest certain equivalent.
+<BR>&nbsp;
+<CENTER><IMG SRC="graphics/tree.gif" ALT="The Decision Tree" NOSAVE HEIGHT=646 WIDTH=440></CENTER>
+&nbsp;<IMG SRC="graphics/Bar.gif" NOSAVE HEIGHT=5 WIDTH=100%>
+<CENTER><TABLE COLS=2 WIDTH="90%" >
+<TR>
+<TD>
+<CENTER><A HREF="deterministic.htm"><IMG SRC="graphics/backward.gif" BORDER=0 HEIGHT=39 WIDTH=35 ALIGN=CENTER></A><A HREF="deterministic.htm">Back
+to Deterministic Analysis</A></CENTER>
+</TD>
+
+<TD>
+<CENTER><A HREF="cumulative.htm">Next to Cumulative Distribution</A><A HREF="cumulative.htm"><IMG SRC="graphics/forward.gif" BORDER=0 HEIGHT=39 WIDTH=35 ALIGN=CENTER></A></CENTER>
+</TD>
+</TR>
+</TABLE></CENTER>
+&nbsp;
+</BODY>
+</HTML>

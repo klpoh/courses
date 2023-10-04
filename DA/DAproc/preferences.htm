@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 (Macintosh; I; PPC) [Netscape]">
+   <TITLE>Preferences</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#551A8B" ALINK="#0000FF">
+
+<CENTER>
+<H1>
+<FONT FACE="Monotype Corsiva"><FONT COLOR="#6C18B0">Preferences</FONT></FONT></H1></CENTER>
+
+<CENTER><IMG SRC="graphics/Bar.gif" NOSAVE HEIGHT=5 WIDTH=100%></CENTER>
+&nbsp;
+<H3>
+<FONT COLOR="#6C18B0"><FONT SIZE=+2>Values</FONT></FONT></H3>
+How does the company decide whether one project is better than the other
+in case when there is no uncertainty?&nbsp; Each company has their own
+criteria - a specific metric they use to evaluate the success of a project.&nbsp;
+For one company it could be the Return on Investment, for another company
+it could be the total profit.
+
+<P>VOSI evaluates all its projects in terms of Net Present Value and will
+choose a project with the highest NPV.&nbsp; Collapsing the cash flows
+into one number (NPV) allows to compare different projects and cash flows.
+To calculate NPV one has to estimate cash flows for every year over the
+length of the project and then calculate the value of this cash stream
+at the present time.&nbsp; In order to calculate this value we have to
+know the company's time preference.
+<BR>&nbsp;
+<H3>
+<FONT COLOR="#6C18B0"><FONT SIZE=+2>Time Preference</FONT></FONT></H3>
+The present value of money depends on when that money is available.&nbsp;
+For example, we can compare the value of getting $100 today vs. getting
+$100 a year from now.&nbsp; If we have&nbsp; $100 now we can deposit it
+in the bank and have $100+interest after a year.&nbsp; So, our time preference
+depends on what we can do with that money.&nbsp; This is often expressed
+in terms of discount rate (also called interest rate).
+
+<P>The discount rate used to calculate NPV represents decision maker's
+time preference.&nbsp; Throughout this analysis we will use the discount
+rate of 10%.
+<BR>&nbsp;
+<H3>
+<FONT COLOR="#6C18B0"><FONT SIZE=+2>Risk Tolerance</FONT></FONT></H3>
+Since every plan under consideration involves some uncertainty or risk,
+it is necessary to consider exactly how much risk the company is willing
+to take.
+
+<P>When considering deals with uncertain outcomes it is usually not enough
+to consider the expected values of these deals.&nbsp; Consider the following
+example:
+<UL>You are offered two deals.&nbsp; If you choose Deal A, there is a 90%
+chance that you will win $140 and 10% chance that you will lose $10.&nbsp;
+If you choose Deal B, there is a 90% chance that you will win $1,250&nbsp;
+and 10% chance that you will lose $10,000.&nbsp; Note that the two deals
+have the same expected value.&nbsp; Which deal do you prefer?</UL>
+&nbsp;
+<CENTER><IMG SRC="graphics/deals.gif" ALT="Uncertain deals" NOSAVE BORDER=0 HEIGHT=134 WIDTH=588></CENTER>
+&nbsp;
+<UL>If you choose your deals based on the expected value, then you should
+be indifferent between the two.&nbsp; However, most of us would prefer
+deal A because deal B is too risky.&nbsp; The choice of deals reflect our
+risk preference.
+<BR>&nbsp;</UL>
+Preferences are expressed by <B>utilities</B>, also called risk-adjusted
+values, utility values, or u-values.&nbsp; One particularly convenient
+form for expressing preferences is the <I>exponential utility function:</I>
+<CENTER></CENTER>
+
+<CENTER><A NAME="utility_function"></A>u(x) = 1 - exp(-x/rho)</CENTER>
+
+<CENTER></CENTER>
+
+<CENTER>where rho is the<B> risk tolerance</B>.</CENTER>
+
+
+<P>Risk tolerance is a convenient measure for corporate risk attitude.&nbsp;
+Several methods of assessing risk tolerance have been developed.&nbsp;
+For example, we could offer a deal where the decision-maker has 50% chance
+of winning $W and 50% chance of loosing $W/2.&nbsp; We can find such W
+that the decision-maker will be indifferent between taking or not taking
+the deal.&nbsp; Then the risk tolerance can be calculated as W*1.04.
+
+<P>For VOSI the risk tolerance is assessed as follows:
+<CENTER><IMG SRC="graphics/rho.gif" ALT="Risk tolerance" NOSAVE BORDER=0 HEIGHT=144 WIDTH=326></CENTER>
+
+<CENTER>&nbsp;</CENTER>
+
+
+<P>Another good approximation is setting risk tolerance to 6.4% of annual
+sales.
+
+<P><IMG SRC="graphics/Bar.gif" NOSAVE HEIGHT=5 WIDTH=100%>
+<CENTER><TABLE COLS=2 WIDTH="90%" >
+<TR>
+<TD>
+<CENTER><A HREF="uncertainties.htm"><IMG SRC="graphics/backward.gif" NOSAVE BORDER=0 HEIGHT=39 WIDTH=35 ALIGN=CENTER></A><A HREF="uncertainties.htm">Back
+to Uncertainties</A></CENTER>
+</TD>
+
+<TD>
+<CENTER><A HREF="model.htm">Next to Value Model</A><A HREF="model.htm"><IMG SRC="graphics/forward.gif" NOSAVE BORDER=0 HEIGHT=39 WIDTH=35 ALIGN=CENTER></A></CENTER>
+</TD>
+</TR>
+</TABLE></CENTER>
+&nbsp;
+</BODY>
+</HTML>
