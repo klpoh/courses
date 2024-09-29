@@ -1,50 +1,45 @@
 # -*- coding: utf-8 -*-
-""" AHP_4L_with_sensit_analysis_CleanEnergy.py """
 import numpy as np
 from scipy import stats
 from scipy.optimize import root
 import matplotlib.pyplot as plt
-""" Solve a complete 4-level AHP model and perform sensitivity analysis
-    on the weights on main and sub-criteria (2024 08 30) """
-    
+""" 5.2_AHP_4L_unbalance_hierarchy_JobSelection_with_subcriteria.py"""
+
 def main():
     
-    Substainable_Energy()
-    
-    
-    
-def Substainable_Energy():
-    """ Sustainable Energy Selection Problem """
+    JobSelect_with_subcriteria()
+
+
+
+def JobSelect_with_subcriteria():
+    """ Job Section Problem with Sub-criteria (Unbalance Hiearchy) 2024 09 29"""
     
     # Goal
-    G = 'Substainable Clean Energy Technology'
+    G = 'Job Satisfaction'
     
-    # Main criteria and Sub-Criteria
-    S = {'Technical': ['Technology readiness', 
-                       'Safety',
-                       'Efficiency',
-                       'Useful life' ],
-         'Economic': ['Investment cost',
-                      'O&M costs',
-                      'Feed-in-Tariff'],
-         'Environmental': ['CO2 emission',
-                           'Land use',
-                           'Water consumption'],
-         'Social & Policy': ['Job creation',
-                             'Projected capacity']
+    # Main criteria and Sub-Criteria if any
+    S = {'Research' :  [ None ],
+         'Growth'   :  ['Short-term','Long-term'],
+         'Benefits' :  [ None ],
+         'Colleages':  [ None ],
+         'Location' :  [ None ],
+         'Reputation': [None ] 
          }
-    
     C = list(S.keys())
-
+    
     # Alternatives
-    AL = ['Solar PV','Wind','Nuclear','Biomass']
+    AL = ['Company A', 'Company B', 'Company C']
+    
     
     # Main criteria wrt Goal
-    AG = np.array([[1,  1,  1/5, 1/2],
-                   [1,  1,  1/5, 1/2],
-                   [5,  5,   1,   3 ],
-                   [2,  2,  1/3,  1 ]])
+    AG = np.array([[ 1,  1 ,  1,  4,  1,  1/2 ],
+                   [ 1,  1,   2,  4,  1,  1/2 ],
+                   [ 1, 1/2 , 1,  5,  3,  1/2 ],
+                   [1/4,1/4, 1/5, 1, 1/3, 1/3 ],
+                   [ 1,   1, 1/3, 3,  1,   1  ],
+                   [ 2,   2,  2,  3,  1,   1  ]] )
     
+        
     # Main criteria weights
     method = 'Algebra'
     u = AHPmat(AG, method=method)
@@ -53,134 +48,100 @@ def Substainable_Energy():
     for i, cr in enumerate(C):
         print(f"  {cr:15} : {u[i]:.6f}")
 
-    # Sub-Criteria under 'Technical'
-    A1 = np.array([[ 1,   1,  3,  1 ],
-                   [ 1,   1,  3,  1 ],
-                   [1/3, 1/3, 1, 1/2],
-                   [ 1,   1,  2,  1 ]])
+    # Sub-Criteria under 'Research'
+    A1 = np.array([])
     
-    # Sub-Criteria under 'Economic'
-    A2 = np.array([[1, 1/9, 1/5],
-                    [9,  1,   4 ],
-                    [5, 1/4,  1 ]])
+    # Sub-Criteria under 'Growth'
+    A2 =  np.array([[1, 1/3 ], 
+                    [3,  1, ]])
+    
+    # Sub-Criteria under 'Benefits'
+    A3 = np.array([])
 
-    # Sub-Criteria under 'Environmental'
-    A3 = np.array([[1, 1/4, 1/3],
-                   [4,  1,   1 ],
-                   [3,  1,   1 ]])
+    # Sub-Criteria under 'Colleages'
+    A4 = np.array([])
 
-    # Sub-Criteria under 'Social & Policy'
-    A4 = np.array([[ 1,  2],
-                   [1/2, 1]])
+    # Sub-Criteria under 'Location
+    A5 = np.array([])
+
+    # Sub-Criteria under 'Reputation'
+    A6 = np.array([])
+
 
     # Sub-criteria weights
-    v = { cr : AHPmat(A, method=method) for cr, A in zip(C,[A1,A2,A3,A4]) }
+    v = { cr : AHPmat(A, method=method) for cr, A in zip(C,[A1,A2,A3,A4,A5,A6]) }
  
-
     for cr, z in v.items():
         print(f"\nSub-criteria weights wrt {cr}")
         for wj, s in zip(z, S[cr]):
-            print(f"  {s:20} : {wj:.6f}")
+            if s is  None:
+                print("  ",s)
+            else:
+                print(f"  {s:20} : {wj:.6f}")
     
     # Sub-criteria gloabl weights
     vG = {}
     for i, (cr, z) in enumerate(v.items()):
         vG[cr] = u[i]*z
     
-    # Alternatives w.r.t. sub-criteria under 'Technical'
-    # 'Technologial readiness'
-    A11 = np.array([[ 1,   1,  3,  2 ],
-                    [ 1,   1,  3,  2,],
-                    [1/3, 1/3, 1, 1/2],
-                    [1/2, 1/2, 2,  1 ]])
     
-    # 'Safety'
-    A12 = np.array([[ 1,   2,  3, 1/2],
-                    [1/2,  1,  2, 1/2],
-                    [1/3, 1/2, 1, 1/4],
-                    [ 2,   2,  4,  1]])
+    # Alternatives w.r.t. 'Research'
+    # Pairwise compare alternatives wrt Research
+    A11 = np.array([[ 1, 1/4, 1/2 ],  
+                    [ 4,  1,    3 ],
+                    [ 2, 1/3,   1 ]])
     
-    # 'Efficiency'
-    A13 = np.array([[1, 1/2, 1/2, 1/2],
-                    [2,  1,   1,   2 ],
-                    [2,  1,   1,   1 ],
-                    [2,  1/2, 1,   1 ]])
+    # Pairwise compare alternatives wrt Growth > Short-Term
+    A21 =  np.array([[1, 1/3, 1/7 ], 
+                     [3,  1,  1/3 ],
+                     [7,  3,   1  ]])
     
-    # 'Useful life'
-    A14 = np.array([[1, 1, 1/2,  1 ],
-                    [1, 1, 1/3, 1/2],
-                    [2, 3,  1,   3 ],
-                    [1, 2, 1/3,  1 ]])
-    
-   
-    # Alternatives w.r.t. sub-criteria under 'Economic'
-    # 'Investment cost'
-    A21 = np.array([[1, 1/2,  1, 1],
-                     [2,  1,   2, 2],
-                     [1,  1/2, 1, 1],
-                     [1,  1/2, 1, 1]])  
-    
-    # 'O&M costs'
-    A22 = np.array([[ 1,  2, 1/3, 1/7],
-                    [1/2, 1, 1/3, 1/9],
-                    [ 3,  3,  1,  1/3],
-                    [ 7,  9,  3,	 1 ]])
-    
-    # 'Feed-in-Tariff'
-    A23 = np.array([[1, 1/2, 1/2, 1/2],
-                    [2,  1,   1,   2 ],
-                    [2,  1,   1,   1 ],
-                    [2, 1/2,  1,   1 ]])
+    # Pairwise compare alternatives wrt Growth > Long-Term
+    A22 =  np.array([[ 1,   3,  5 ], 
+                     [1/3,  1,  2 ],
+                     [1/5, 1/2, 1 ]])
     
     
-    # Alternatives w.r.t. sub-criteria under 'Environmental'
-    # 'CO2 emission'
-    A31 = np.array([[ 1, 1/2,  1/2, 3],
-                    [ 2,  1,   1/2, 5],
-                    [ 2,  2,    1,  5],
-                    [1/3, 1/5, 1/5, 1]])
+    # Pairwise compare alternatives wrt Benefits
+    A31 = np.array([[ 1,  3,  1/3 ],
+                   [1/3, 1,  1/7 ],
+                   [ 3,  7,   1  ]])
     
-    # 'Land use'
-    A32 = np.array([[ 1,   8,   7,  9],
-                    [1/8,  1,   1,  4],
-                    [1/7,  1,   1,  4],
-                    [1/9, 1/4, 1/4, 1]])
+    # Pairwise compare alternatives wrt Colleages
+    A41 = np.array([[ 1,  1/3,  5 ],
+                   [ 3,   1,   7 ],
+                   [1/5, 1/7,  1 ]])
     
-    # 'Water consumption'
-    A33 = np.array([[ 1, 1/2,  9,  8 ],
-                    [ 2,  1,   9,  9 ],
-                    [1/9, 1/9, 1, 1/2],
-                    [1/8, 1/9, 2,  1 ]])
+    # Pairwise compare alternatives wrt Location
+    A51 = np.array([[ 1,   1,   7 ],
+                   [ 1,   1,   7 ],
+                   [1/7, 1/7,  1 ]])
     
-    # Alternatives w.r.t. sub-criteria under 'Social & Policy'
-    # 'Job creation'
-    A41 = np.array([[ 1,  5, 6,  4 ],
-                    [1/5, 1, 1,  1 ],
-                    [1/6, 1, 1, 1/2],
-                    [1/4, 1, 2,  1 ]])
-    
-    # 'Projected capacity'
-    A42 = np.array([[ 1, 1/5,  2, 1/2],
-                    [ 5,  1,   7,  2 ],
-                    [1/2, 1/7, 1, 1/3],
-                    [ 2,  1/2, 3,  1 ]])
+    # Pairwise compare alternatives wrt Reputation      
+    A61 = np.array([[ 1,   7,   9 ],
+                   [1/7,  1,   2 ],
+                   [1/9, 1/2,  1 ]])
     
     W = {}
-    # Technical
-    W[C[0]] = np.array([AHPmat(A, method=method)
-                        for A in [A11,A12,A13,A14]]).T
-    # Economic
-    W[C[1]] = np.array( [AHPmat(A, method=method) 
-                        for A in [A21,A22,A23]]).T
+    # Research
+    W[C[0]] = np.array([AHPmat(A, method=method) for A in [A11]]).T
     
-    # Environmental
-    W[C[2]] = np.array([AHPmat(A, method=method) 
-                        for A in [A31,A32,A33]]).T
+    # Growth
+    W[C[1]] = np.array( [AHPmat(A, method=method) for A in [A21,A22]]).T
     
-    # Social & Policy
-    W[C[3]] = np.array([AHPmat(A, method=method)
-                        for A in [A41,A42]]).T
-
+    # Benefits
+    W[C[2]] = np.array([AHPmat(A, method=method) for A in [A31]]).T
+          
+    # Colleages
+    W[C[3]] = np.array([AHPmat(A, method=method) for A in [A41]]).T
+    
+    # Location
+    W[C[4]] = np.array([AHPmat(A, method=method) for A in [A51]]).T
+    
+    # Reputation
+    W[C[5]] = np.array([AHPmat(A, method=method) 
+                        for A in [A61]]).T
+    
     print("\nAlternatives' local weights")
     for cr in C:
         for j, s in enumerate(S[cr]):
@@ -188,6 +149,7 @@ def Substainable_Energy():
             for k, en in enumerate(AL):
                 print(f"    {en:9s}: {W[cr][k,j]:.6f}")
 
+    
     # Compute the Alternatives' Global weights
     wG = sum([ np.dot(W[cr], vG[cr]) for cr in C ])
     
@@ -196,6 +158,8 @@ def Substainable_Energy():
         print(f"  {energy:9s}: {wG[i]:.6f}")
 
     sensit(C, S, AL, u, v, W)
+
+
 
 
 def sensit(C, S, AL, u, v, W):
@@ -216,16 +180,17 @@ def sensit(C, S, AL, u, v, W):
     # Sensitivty analysis on sub-criteria weights
     for cr in C:
         for k, sc in enumerate(S[cr]):
-            adj_v = dict(v) # make a deep copy
-            adj_WG_dict = {}
-            for p in np.linspace(0,1,11):
-                adj_v[cr] = renorm_wt(p, k, v[cr])
-                adj_vG = {}
-                for i, (cx, z) in enumerate(adj_v.items()):
-                    adj_vG[cx] = u[i]*z
-                adj_wG = sum([ np.dot(W[c], adj_vG[c]) for c in C ])
-                adj_WG_dict[p] = adj_wG
-            rainbow_diagram(adj_WG_dict, AL, cr, sub_cr=sc, base_val=v[cr][k])
+            if sc is not None:
+                adj_v = dict(v) # make a deep copy
+                adj_WG_dict = {}
+                for p in np.linspace(0,1,11):
+                    adj_v[cr] = renorm_wt(p, k, v[cr])
+                    adj_vG = {}
+                    for i, (cx, z) in enumerate(adj_v.items()):
+                        adj_vG[cx] = u[i]*z
+                    adj_wG = sum([ np.dot(W[c], adj_vG[c]) for c in C ])
+                    adj_WG_dict[p] = adj_wG
+                rainbow_diagram(adj_WG_dict, AL, cr, sub_cr=sc, base_val=v[cr][k])
     
             
 def rainbow_diagram(w_dict, alternatives, main_cr, sub_cr=None, base_val=None):
@@ -347,6 +312,9 @@ def AHPmat(A, method='Power'):
         CI = (lambda_max-n)/(n-1)
         CR = 0 if n==2 else CI/RI[n-3]
         return w, lambda_max, CI, CR
+    
+    if A.size==0:
+        return np.array([1])
     
     # We just need the w vector.
     if method=='Power':
